@@ -1,4 +1,4 @@
-# wiki-bot-detection
+# wiki-bots-detection
 
 #### Homework II - Masters of Data Science Course at UCU
 
