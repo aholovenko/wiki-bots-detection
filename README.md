@@ -31,3 +31,12 @@ error below 10%.
 ● Make your system to work with Spark Streaming
 
 ● Describe the distribution of edits per users and bots.
+
+### Run code
+
+```
+pyenv virtualenv 3.wiki-bots-detection
+source ~/.pyenv/versions/3.6.8/envs/wiki-bots-detection/bin/activate
+pip install -r requirements.txt
+python3 main.py
+```
