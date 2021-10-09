@@ -99,14 +99,19 @@ def main():
         {'classifier_time_limit': 1., 'bloom_filter_time_limit': 1., },
     ]
 
+    will_run = 0
     for params in params_grid:
+        for el in params.values():
+            will_run += el
+        print(f"This will run for {will_run} mins.")
+
         result = params.copy()
 
         t_0 = time.time()
         dataset = []
 
         time_threshold = params['classifier_time_limit']
-        print(f'Running stream for {time_threshold} mins...\n')
+        print(f'Collecting black list. Running stream for {time_threshold} mins...\n')
 
         # stream to generate data for black list
         for event in EventSource(URL):  # start streaming
@@ -150,7 +155,7 @@ def main():
         t_0 = time.time()
 
         time_threshold = params['bloom_filter_time_limit']
-        print(f'Running stream for {time_threshold} mins...\n')
+        print(f'Checking Bloom filter. Running stream for {time_threshold} mins...\n')
 
         # stream to generate data for evaluation
         for event in EventSource(URL):  # start streaming
@@ -180,8 +185,8 @@ def main():
         result.update({
             'real_bots_count': len(gd_black_set),
             'bloom_bots_count': len(bloom_filter_set),
-            'acc_rel_real': len(bloom_filter_set.intersection(gd_black_set)) / len(gd_black_set),
-            'acc_rel_bloom': len(bloom_filter_set.intersection(gd_black_set)) / len(bloom_filter_set),
+            'recall': len(bloom_filter_set.intersection(gd_black_set)) / len(gd_black_set),
+            'precision': len(bloom_filter_set.intersection(gd_black_set)) / len(bloom_filter_set),
             'intersec_count': len(bloom_filter_set.intersection(gd_black_set)),
         })
 

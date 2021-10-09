@@ -32,7 +32,19 @@ error below 10%.
 
 ● Describe the distribution of edits per users and bots.
 
-### Run code
+# Solution
+
+### Research Jupyter notebooks 
+
+All notebooks can be found in `notebooks` dir:
+
+* `wiki-bots-data-collection-and-eda.ipynb` for collecting data and preliminary analysis with charts in `charts/`;
+
+* `wiki-bots-classification.ipynb` for training and optimizing models with best model in `model/`;
+
+* `wiki-bots-stream-with-bloom-filter.ipynb` for running real data stream, classifying users and initializing Bloom filter.
+
+### To run whole wiki bots detection pipeline yourself
 
 ```
 pyenv virtualenv 3.wiki-bots-detection
